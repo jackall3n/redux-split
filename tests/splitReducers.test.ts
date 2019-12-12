@@ -6,14 +6,14 @@ describe("splitReducers", () => {
   let store: Store;
 
   beforeEach(() => {
-    const reducer1 = (state: string, action: any) => {
+    const reducer1 = (state: string | undefined, action: any) => {
       return ''
     };
-    const reducer2 = (state: string, action: any) => {
+    const reducer2 = (state: string | undefined, action: any) => {
       return ''
     };
 
-    const userReducer = splitReducers([reducer1, reducer1], 'initial-state');
+    const userReducer = splitReducers([reducer1, reducer2]);
 
     const rootReducer = combineReducers({
       user: userReducer

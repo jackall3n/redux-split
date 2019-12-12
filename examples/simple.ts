@@ -49,7 +49,7 @@ function userInfoReducer(state: UserState, action: UserActions) {
   }
 }
 
-function userAddressReducer(state: UserState, action: UserActions) {
+function userAddressReducer(state: UserState = initialState, action: UserActions) {
   switch (action.type) {
     case "USER_ADDRESS_UPDATE":
       return { ...state, address: { ...state.address, ...action.payload } };
@@ -58,10 +58,13 @@ function userAddressReducer(state: UserState, action: UserActions) {
   }
 }
 
-const userReducer = splitReducers([
-  userInfoReducer,
-  userAddressReducer
+const userReducer1 = splitReducers([
+  userInfoReducer
 ], initialState);
+
+const userReducer = splitReducers([
+  userAddressReducer,
+]);
 
 const rootReducer = combineReducers({
   user: userReducer
